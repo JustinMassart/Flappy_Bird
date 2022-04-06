@@ -13,10 +13,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hepl-mmi/hot-air-balloon/issues"
-  },
-  "homepage": "https://github.com/hepl-mmi/hot-air-balloon#readme",
   "devDependencies": {
     "browser-sync": "^2.27.9",
     "browser-sync-webpack-plugin": "^2.3.0",
