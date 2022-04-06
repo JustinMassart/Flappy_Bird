@@ -1,5 +1,6 @@
 import background from './background';
 import ground from './ground';
+import birdie from './birdie';
 
 const game = {
     init() {
@@ -11,6 +12,7 @@ const game = {
         this.sprite.addEventListener('load', () => {
             background.init(this)
             ground.init(this)
+            birdie.init(this)
             this.animate()
         })
     },
@@ -22,6 +24,7 @@ const game = {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         background.update()
         ground.update()
+        birdie.update()
     },
 
     renderSpriteFrame(coordinates: { sx: any; sy: any; sw: any; sh: any; dx: any; dy: any; dw: any; dh: any; }) {
