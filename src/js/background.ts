@@ -11,13 +11,13 @@ const background = {
     },
     init(game: any) {
         this.game = game;
-    },
-    update() {
-        this.game.renderSpriteFrame(this.frame)
         this.frame.dw = this.game.canvas.width
         this.frame.dh = this.game.canvas.height
         this.frame.sw = this.game.canvas.width
         this.frame.sh = this.game.canvas.height
+    },
+    update() {
+        this.game.renderSpriteFrame(this.frame)
     }
 }
 
