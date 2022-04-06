@@ -19,7 +19,10 @@ const birdie = {
     height: 24,
     x: 0,
     y: 0,
-    maxAnimationStep: 3,
+    maxAnimationStep: 2,
+    animationStep: 0,
+    counterInterval: 0,
+    maxInterval: 5,
     fallSpeed: 0,
     maxFallSpeed: 7,
     init(game: any) {
@@ -33,12 +36,17 @@ const birdie = {
     },
 
     render() {
+        this.counterInterval++
+        if (!(this.counterInterval % this.maxInterval)) {
+            this.counterInterval = 0
+            this.animationStep = (this.animationStep < this.maxAnimationStep) ? this.animationStep + 1 : 0
+        }
         this.game.ctx.save()
         this.game.ctx.translate(this.x, this.y)
         this.game.ctx.rotate(0)
         this.game.renderSpriteFrame({
-            sx: this.frames[0].sx,
-            sy: this.frames[0].sy,
+            sx: this.frames[this.animationStep].sx,
+            sy: this.frames[this.animationStep].sy,
             sw: this.width,
             sh: this.height,
             dx: -this.width / 2,
