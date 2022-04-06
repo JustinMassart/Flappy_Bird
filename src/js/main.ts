@@ -3,6 +3,7 @@ import ground from './ground';
 import birdie from './birdie';
 
 const game = {
+    gravity: 0.91,
     init() {
         this.canvas = document.getElementById('game')
         this.ctx = this.canvas.getContext('2d')

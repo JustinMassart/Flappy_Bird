@@ -19,7 +19,7 @@ const birdie = {
     height: 24,
     x: 0,
     y: 0,
-    maxAnimationStep: 2,
+    maxAnimationStep: 0,
     animationStep: 0,
     counterInterval: 0,
     maxInterval: 5,
@@ -29,9 +29,14 @@ const birdie = {
         this.game = game
         this.y = (this.game.canvas.height - ground.frame.sh) / 2
         this.x = this.width
-
+        this.maxAnimationStep = this.frames.length - 1
     },
     update() {
+        if (this.fallSpeed < this.maxFallSpeed) {
+            this.fallSpeed += this.game.gravity
+        }
+        this.y += this.fallSpeed
+        this.checkGroundCollision()
         this.render()
     },
 
@@ -55,7 +60,14 @@ const birdie = {
             dh: this.height,
         })
         this.game.ctx.restore()
-    }
+    },
+
+    checkGroundCollision() {
+        if (this.y + this.height / 2 > ground.frame.dy) {
+            this.y = ground.frame.dy - this.height / 2
+            this.fallSpeed = -this.maxFallSpeed
+        }
+    },
 }
 
 export default birdie
