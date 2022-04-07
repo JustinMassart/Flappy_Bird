@@ -32,11 +32,14 @@ const birdie = {
         this.maxAnimationStep = this.frames.length - 1
     },
     update() {
-        if (this.fallSpeed < this.maxFallSpeed) {
-            this.fallSpeed += this.game.gravity
+        if (this.game.hasStarted) {
+            if (this.fallSpeed < this.maxFallSpeed) {
+                this.fallSpeed += this.game.gravity
+            }
+            this.y += this.fallSpeed
+            this.checkGroundCollision()
+            this.checkTubesCollision()
         }
-        this.y += this.fallSpeed
-        this.checkGroundCollision()
         this.render()
     },
 
@@ -62,11 +65,25 @@ const birdie = {
         this.game.ctx.restore()
     },
 
+    goUp() {
+        this.fallSpeed = -this.maxFallSpeed * 1.2
+    },
+
     checkGroundCollision() {
         if (this.y + this.height / 2 > ground.frame.dy) {
             this.y = ground.frame.dy - this.height / 2
             this.fallSpeed = -this.maxFallSpeed
         }
+    },
+
+    checkTubesCollision() {
+        this.game.tubePairs.forEach((tubePair: { x: number; width: number; height: number; yTop: number; yBottom: number;}) => {
+            if ((this.x + this.width / 2) > tubePair.x && (this.x - this.width / 2) < tubePair.x + tubePair.width) {
+                if ((this.y - this.height / 2) < tubePair.yTop + tubePair.height || (this.y + this.height / 2) > tubePair.yBottom) {
+                    this.game.cancelAnimation()
+                }
+            }
+        })
     },
 }
 
