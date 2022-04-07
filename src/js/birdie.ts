@@ -48,7 +48,7 @@ const birdie = {
         }
         this.game.ctx.save()
         this.game.ctx.translate(this.x, this.y)
-        this.game.ctx.rotate(0)
+        this.game.ctx.rotate(this.fallSpeed / this.maxFallSpeed)
         this.game.renderSpriteFrame({
             sx: this.frames[this.animationStep].sx,
             sy: this.frames[this.animationStep].sy,
