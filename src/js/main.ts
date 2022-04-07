@@ -5,6 +5,7 @@ import ground from './ground';
 import birdie from './birdie';
 
 const game = {
+    btn: document.getElementById('flap'),
     gravity: 0.91,
     hasStarted: false,
 // @ts-ignore
