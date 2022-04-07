@@ -11,6 +11,15 @@ const gameController = {
                 }
             }
         )
+        window.addEventListener('touchstart', (e) => {
+                if (e.touches) {
+                    if (!game.hasStarted) {
+                        game.hasStarted = true
+                    }
+                    birdie.goUp()
+                }
+            }
+        )
     }
 
 }
